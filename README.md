@@ -1,6 +1,7 @@
-# Gameetod
+# GameeTod
 
 Auto Claim Wat Point from gamee
+
 
 
 # Table of Contents
@@ -17,9 +18,6 @@ Auto Claim Wat Point from gamee
 - [How to Get Data](#how-to-get-data)
 - [Javascript Command to Get Telegram Data for Desktop](#javascript-command-to-get-telegram-data-for-desktop)
 - [Run for 24/7](#run-for-247)
-- [Thank me later](#thank-me-later)
-
-<!-- # My Note
 
 ```text
 Sorry, I can't add the feature to complete the 'race' because my device doesn't support it. 
@@ -63,7 +61,7 @@ Here are some parameters that can be used in bot.py or the bot's main script
 
 2. Clone this repository
    ```shell
-   git clone https://github.com/akasakaid/gameetod.git
+   git clone https://github.com/Doc-SLAV/gamee.git
    ```
 
 3. goto gameetod directory
@@ -98,7 +96,7 @@ Here are some parameters that can be used in bot.py or the bot's main script
 2. Clone this repository
    
    ```shell
-   git clone https://github.com/akasakaid/gameetod.git
+   git clone https://github.com/Doc-SLAV/gamee.git
    ```
 
 3. goto gameetod directory
@@ -135,7 +133,7 @@ Here are some parameters that can be used in bot.py or the bot's main script
 
 2. Clone this repository
    ```shell
-   git clone https://github.com/akasakaid/gameetod.git
+   git clone https://github.com/Doc-SLAV/gamee.git
    ```
 
 3. goto gameetod directory
@@ -156,7 +154,7 @@ Here are some parameters that can be used in bot.py or the bot's main script
 
 # How to Get Data
    
-   1. Active web inspecting in telegram app, How to activate follow the video Search fucking google
+   1. Active web inspecting in telegram app, How to activate just search on google
    2. Goto gamee bot and open the apps
    3. Press `F12` on your keyboard to open devtool or right click on app and select `Inspect`
    4. Goto `console` menu and copy [javascript code](#javascript-command-to-get-telegram-data-for-desktop) then paste on `console` menu
@@ -186,6 +184,3 @@ copy(Telegram.WebApp.initData)
 # Run for 24/7 
 
 You can run the script bot for 24/7 using vps / rdp. You can use `screen` application in vps linux to running the script bot in background process
-
-
-# Thank me later
