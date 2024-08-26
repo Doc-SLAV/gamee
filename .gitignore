@@ -1,0 +1,14 @@
+*.json
+*.py
+!bot.py
+env
+sessions
+*.session
+*.txt
+!data.txt
+*.log
+!uuid.json
+!requirements.txt
+!config.json
+!tokens.json
+__pycache__
