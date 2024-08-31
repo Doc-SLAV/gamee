@@ -86,7 +86,7 @@ class GameeTod:
                 if not os.path.exists("http.log"):
                     await aiofiles.open("http.log", "a")
                 logsize = os.path.getsize("http.log")
-                if ((logsize / 1024) / 1024) > 2:
+                if ((logsize / 1024) / 1024) > 1:
                     async with aiofiles.open("http.log", "w") as hw:
                         await hw.write("")
                 if data is None:
@@ -95,7 +95,7 @@ class GameeTod:
                     res = await self.ses.post(url)
                 else:
                     res = await self.ses.post(url, data=data)
-                async with aiofiles.open("http.log", "a",encoding='utf-8') as hw:
+                async with aiofiles.open("http.log", "a", encoding="utf-8") as hw:
                     await hw.write(f"{res.text}\n")
                 if "<title>" in res.text:
                     self.log(f"{kuning}failed get response json !")
@@ -104,6 +104,15 @@ class GameeTod:
                 return res
             except (hatetepe.TimeoutException, hatetepe.NetworkError):
                 self.log(f"{merah}connection error / connection timeout !")
+
+    async def check_ip(self):
+        res = await self.http("https://ipinfo.io/json")
+        ip = res.json().get("ip")
+        city = res.json().get("city")
+        region = res.json().get("region")
+        country = res.json().get("country")
+        GameeTod.log(f"{hijau}proxy ip : {putih}{ip}")
+        GameeTod.log(f"{hijau}city : {putih}{city} | {hijau}country : {putih}{country}")
 
     async def login(self, tg_data):
         data = {
@@ -331,7 +340,7 @@ class GameeTod:
         self.log(f"{kuning}mining is not over !")
         return
 
-    async def start(self):
+    async def start(self, proxy=None):
         headers = {
             "Accept": "*/*",
             "Accept-Encoding": "gzip, deflate",
@@ -346,7 +355,12 @@ class GameeTod:
             "Sec-Fetch-Site": "same-site",
             "X-Requested-With": "org.telegram.messenger",
         }
-        self.ses = hatetepe.AsyncClient(headers=headers)
+        if proxy is None:
+            self.ses = hatetepe.AsyncClient()
+        else:
+            self.ses = hatetepe.AsyncClient(proxy=proxy)
+            await self.check_ip()
+        self.ses.headers.update(headers)
         if not os.path.exists(self.ua_file):
             async with aiofiles.open(self.ua_file, "w") as w:
                 await w.write(json.dumps({}))
@@ -405,22 +419,28 @@ async def main():
     os.system("cls" if os.name == "nt" else "clear")
     print(
         f"""
-{putih}Auto Script for {kuning}Gamee {putih}/ WAT
-{hijau}Author : {putih}AKADEMI PENGEMIS
-{hijau}Note : {putih}Don't forget to breathe
-       {reset}
+{ungu} ┏┓ ┓  ┏┓    •         {putih}Auto Script for {kuning}Gamee {putih}/ WAT
+{ungu} ┗┓ ┃  ┃┃┏┓┏┓┓┏┓┏ ╋    {hijau}Author : {putih}AkasakaID / Silent Johnny
+{ungu} ┗┛┗┛  ┣┛┛ ┗┛┃┗ ┗ ┗    {hijau}Playgroup : {merah}Akademi Pengemis
+{ungu}            ┗┛         {hijau}Note : {putih}Not Your Grandmother IDE
+			     {reset}
 
           """
     )
     arg = argparse.ArgumentParser()
     arg.add_argument("-D", "--data", default="data.txt")
     arg.add_argument("-C", "--config", default="config.json")
+    arg.add_argument("-P", "--proxy", default="proxies.txt")
     args = arg.parse_args()
     if not os.path.exists(args.data):
         print(f"{merah}file {putih}{args.data}{merah} is not found !")
         exit()
     if not os.path.exists(args.config):
         print(f"{merah}file {putih}{args.config}{merah} is not found !")
+        exit()
+    if not os.path.exists(args.proxy):
+        print(f"{merah}file {putih}{args.proxy}{merah} is not found !")
+        exit()
     async with aiofiles.open(args.data) as dr:
         dread = await dr.read()
         datas = [i for i in dread.splitlines() if len(i) > 10]
@@ -428,20 +448,31 @@ async def main():
         cf = await cr.read()
         load = json.loads(cf)
         config = Config(
-            load.get("countdown", 300),
+            load.get("countdown", 100),
             load.get("interval", 3),
-            load.get("use_ticket_to_spin", False),
-            load.get("max_use_ticket_to_spin", 50),
+            load.get("use_ticket_to_spin", True),
+            load.get("max_use_ticket_to_spin", 500),
         )
+    use_proxy = False
+    async with aiofiles.open(args.proxy) as pr:
+        pr = await pr.read()
+        proxies = [i for i in pr.splitlines() if len(i) > 0]
+        if len(proxies) > 0:
+            use_proxy = True
     GameeTod.log(f"{hijau}total account : {putih}{len(datas)}")
     if len(datas) <= 0:
         GameeTod.log(f"{merah}0 Account detected, please input your data first !")
         exit()
+    GameeTod.log(f"{hijau}use proxy : {putih}{use_proxy}")
     print(line)
     while True:
         for no, data in enumerate(datas):
             GameeTod.log(f"{hijau}account number : {putih}{no + 1}")
-            await GameeTod(data, config).start()
+            if use_proxy:
+                proxy = proxies[no % len(proxies)]
+            else:
+                proxy = None
+            await GameeTod(data, config).start(proxy)
             print(line)
         await GameeTod.countdown(config.countdown)
 
