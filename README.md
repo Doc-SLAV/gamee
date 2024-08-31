@@ -1,4 +1,4 @@
-# GameeTod
+# Gamee
 
 Auto Claim Wat Point from gamee
 
@@ -21,8 +21,8 @@ Auto Claim Wat Point from gamee
 
 ```text
 Sorry, I can't add the feature to complete the 'race' because my device doesn't support it. 
-When I press the play button, it only shows a black blank (like picture number 1), then I asked someone and he replied “maybe your internet is problematic”. Then I waited until this morning and I tried again but still couldn't.
-Then I tried to see the console menu and it turned out that there was an error (as shown in picture number 2) that my device did not support playing the game.
+When I press the play button, it only shows a black blank, then I asked someone and he replied “maybe your internet is problematic”. Then I waited until this morning and I tried again but still couldn't.
+Then I tried to see the console menu and it turned out that there was an error that my device did not support playing the game.
 So I only updated for mining action, maybe I will update for “racing” action later when I buy rdp (Remote Desktop Protocol / Windows Server) or buy a new device.
 That's all, thank you.
 ```
