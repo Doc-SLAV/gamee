@@ -38,7 +38,7 @@ class Config:
         self.max_use_ticket_to_spin = max_use_ticket_to_spin
 
 
-class GameeTod:
+class Gamee:
     def __init__(self, query: str, config: Config):
         marin = lambda data: {key: value[0] for key, value in parse_qs(data).items()}
         parser = marin(query)
@@ -459,22 +459,22 @@ async def main():
         proxies = [i for i in pr.splitlines() if len(i) > 0]
         if len(proxies) > 0:
             use_proxy = True
-    GameeTod.log(f"{hijau}total account : {putih}{len(datas)}")
+    Gamee.log(f"{hijau}total account : {putih}{len(datas)}")
     if len(datas) <= 0:
-        GameeTod.log(f"{merah}0 Account detected, please input your data first !")
+        Gamee.log(f"{merah}0 Account detected, please input your data first !")
         exit()
-    GameeTod.log(f"{hijau}use proxy : {putih}{use_proxy}")
+    Gamee.log(f"{hijau}use proxy : {putih}{use_proxy}")
     print(line)
     while True:
         for no, data in enumerate(datas):
-            GameeTod.log(f"{hijau}account number : {putih}{no + 1}")
+            Gamee.log(f"{hijau}account number : {putih}{no + 1}")
             if use_proxy:
                 proxy = proxies[no % len(proxies)]
             else:
                 proxy = None
-            await GameeTod(data, config).start(proxy)
+            await Gamee(data, config).start(proxy)
             print(line)
-        await GameeTod.countdown(config.countdown)
+        await Gamee.countdown(config.countdown)
 
 
 if __name__ == "__main__":
