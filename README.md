@@ -6,7 +6,7 @@ Auto Claim Wat Point from gamee
 
 # Table of Contents
 
-- [GameeTod](#gameetod)
+- [Gamee](#gamee)
 - [Table of Contents](#table-of-contents)
 - [Feature](#feature)
 - [Register ?](#register-)
@@ -66,7 +66,7 @@ Here are some parameters that can be used in bot.py or the bot's main script
 
 3. goto gameetod directory
    ```
-   cd gameetod
+   cd gamee
    ```
 
 4. install the require library
@@ -99,10 +99,10 @@ Here are some parameters that can be used in bot.py or the bot's main script
    git clone https://github.com/Doc-SLAV/gamee.git
    ```
 
-3. goto gameetod directory
+3. goto gamee directory
 
    ```shell
-   cd gameetod
+   cd gamee
    ```
 
 4. Install the require library
@@ -136,9 +136,9 @@ Here are some parameters that can be used in bot.py or the bot's main script
    git clone https://github.com/Doc-SLAV/gamee.git
    ```
 
-3. goto gameetod directory
+3. goto gamee directory
    ```
-   cd gameetod
+   cd gamee
    ```
 
 4. install the require library
